@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite'
-import ghPages from 'vite-plugin-gh-pages'
-
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite';
+import vercel from 'vite-plugin-vercel';
+ 
 export default defineConfig({
-  plugins: [ghPages()],
-  base: '/YOUR_REPO_NAME/', // ⚠️ include trailing slash
-})
+  server: {
+    port: process.env.PORT,
+  },
+  plugins: [vercel()],
+});
