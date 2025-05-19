@@ -1,6 +1,9 @@
 import './style.css';
+import './projects.css' // Add this line
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+
 
 // Setup
 
@@ -31,10 +34,10 @@ scene.add(pointLight, ambientLight);
 // Helpers
 
  const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
+//  const gridHelper = new THREE.GridHelper(200, 50);
  scene.add(lightHelper)
 
-// const controls = new OrbitControls(camera, renderer.domElement);
+ //const controls = new OrbitControls(camera, renderer.domElement);
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -160,7 +163,7 @@ function moveCamera() {
   if (scrollTop >= -200) {
     revertRotation = true;
   }
-
+  
   camera.position.z = 50 + scrollTop * -0.001;
   camera.position.x = -10 + scrollTop * -0.0001;
   camera.rotation.y = scrollTop * -0.0002;
@@ -219,3 +222,27 @@ document.querySelectorAll('.top-nav a').forEach(anchor => {
     }
   });
 });
+
+
+
+const loader = new GLTFLoader();
+let model;
+let modelInitialized = false;
+
+loader.load(
+  '/TheeBee.gltf',
+  (gltf) => {
+    model = gltf.scene;
+    model.scale.set(0.5, 0.5, 0.5);
+    model.position.set(0, -6, 0); // Starting position
+    model.rotation.set(0, Math.PI, 0);
+    scene.add(model);
+    modelInitialized = true;
+    model.lookAt(camera.position);
+
+  },
+  undefined,
+  (error) => console.error('Error loading model:', error)
+);
+
+

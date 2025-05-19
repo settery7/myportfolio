@@ -1,0 +1,360 @@
+
+#projects {
+    grid-column: 1 / -1;
+    width: 100%;
+    position: relative;
+    padding: 4rem 0;
+    background: var(--dark-bg);
+    color: var(--text-dark);
+    overflow: visible;
+}
+
+
+.projects-container {
+    display: flex;
+    gap: 2rem;
+    padding: 0 2rem;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+}
+
+
+
+.project-card { 
+    min-width: 300px;
+    height: auto; 
+    background: rgba(30, 30, 30, 0.9);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+.project-card img {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover;   
+    object-position: center; 
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+
+.project-card h3 { 
+    color: var(--accent-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.project-card p { 
+    margin: 0;
+    line-height: 1.5;
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100vw); }
+}
+
+#projects:hover .projects-container {
+    animation: slideOut 15s linear forwards;
+}
+
+
+
+.projects-content {
+    grid-column: 2 / span 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+    width: 100%;
+}
+
+.heading {
+    font-size: clamp(3rem, 8vw, 6.7rem);
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    font-family: 'UVN-Mang-Tre';
+}
+
+.heading span {
+    font-family: 'UVN-Mang-Tre';
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+.projects { 
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 10%;
+}
+
+
+.project-card { 
+    background-color: var(--dark-bg);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    overflow: visible;
+    max-width: 850px;
+    margin: 20px auto;
+    padding: 25px;
+    gap: 25px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.project-card:hover{
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+
+
+.project-image-container, 
+.project-image-container-website, 
+.project-image-container-website-left { 
+    position: relative;
+    padding: 5px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    line-height: 0;
+    overflow: hidden; 
+    
+    
+}
+
+.project-image-container {
+    background-color: transparent;
+    margin-left: -80px;
+    z-index: 2;
+    transform: rotate(-2deg) scale(1.02);
+    transition: 0.3s ease-in-out;
+    display: inline-block; /* Or consider 'block' or removing if it's a flex item in .project-card */
+    flex-shrink: 0;
+    width: 30%; /* Or whatever width you desire */
+    /* REMOVE height: 275px; */
+    /* height: auto; */ /* You can add this, or often just removing the fixed height is enough if it's a block-level or flex item whose size is determined by content */
+    overflow: hidden; /* Keep this or other styling as needed */
+  }
+
+.project-image-container-website { 
+    flex: 0 0 50%; 
+    
+    left: 80px; 
+    z-index: 2;
+    background-color: #ffffff;
+    transform: rotate(2deg) scale(1.02);
+    transition: 0.3s ease-in-out;
+    margin-right: -5%; 
+    height: 275px; 
+}
+
+.project-image-container-website-left { 
+    flex: 0 0 50%; 
+    
+    right: 80px; 
+    left: -80px; 
+    z-index: 2;
+    background-color: #ffffff;
+    transform: rotate(-2deg) scale(1.02);
+    transition: 0.3s ease-in-out;
+    height: 275px; 
+}
+
+
+.project-image-container img,
+.project-image-container-website img,
+.project-image-container-website-left img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    object-position: center; 
+    display: block;
+    border-radius: 8px; 
+    position: relative;
+    z-index: 1;
+}
+
+
+
+
+
+.project-card:hover .project-image-container {
+    transform: rotate(-8deg) scale(1.22);
+}
+.project-card:hover .project-image-container-website { 
+    transform: rotate(8deg) scale(1.15);
+}
+.project-card:hover .project-image-container-website-left { 
+    transform: rotate(-8deg) scale(1.15);
+}
+
+.project-details { 
+    color: var(--text-light);
+    flex: 1; 
+    min-width: 0; 
+    padding: 0 2rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-details h3 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+
+.project-description { 
+    font-size: 0.9rem; 
+    color: var(--text-light);
+    margin-bottom: 10px;
+    flex-grow: 1; 
+    text-align: justify;
+}
+
+.project-tags {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.project-tags .tag {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.project-info {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px 20px; 
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.project-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-info .info-item i {
+    color: var(--accent-color);
+}
+
+
+@media (max-width: 1024px) {
+    .project-card { 
+        flex-direction: column; 
+        gap: 2rem;
+        width: 90%;
+    }
+
+    .project-image-container,
+    .project-image-container-website,
+    .project-image-container-website-left {
+        margin: 0 auto; 
+        width: 100%;    
+        left: auto;     
+        right: auto;
+        margin-right: auto; 
+        height: 300px; 
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .project-card { 
+        padding: 1.5rem;
+        width: 95%; 
+    }
+    .heading {
+        font-size: 5rem;
+    }
+
+    .project-image-container,
+    .project-image-container-website,
+    .project-image-container-website-left {
+        
+        margin: 0 auto 20px auto; 
+        transform: none !important; 
+        padding: 10px; 
+        order: -1; 
+        height: 250px; 
+    }
+
+    .project-image-container img, 
+    .project-image-container-website img,
+    .project-image-container-website-left img {
+        
+        
+        border-radius: 12px; 
+    }
+
+    .project-details {
+        padding: 0 1rem;
+    }
+
+    .project-card:hover .project-image-container,
+    .project-card:hover .project-image-container-website,
+    .project-card:hover .project-image-container-website-left {
+        transform: none !important; 
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 4rem;
+    }
+
+    .project-card { 
+        padding: 15px;
+    }
+
+    .project-image-container,
+    .project-image-container-website,
+    .project-image-container-website-left {
+        padding: 8px;
+        margin-bottom: 15px;
+        height: 200px; 
+    }
+    
+
+    .project-details h3 {
+        font-size: 1.5rem; 
+    }
+
+    .project-description { 
+        font-size: 0.85rem; 
+    }
+}
+
+.project-card img.img-portrait-hero {
+    width: 69%;
+    height: auto;
+    aspect-ratio: 160 / 357;
+    object-fit: contain; /* or 'cover' if you want it to fill and crop */
+    display: block;
+    max-height: 400px;
+    background-color: transparent;
+    /* ... other styles ... */
+  }

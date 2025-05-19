@@ -337,64 +337,6 @@ blockquote p {
   left: 0;
 }
 
-/* ===== Projects Section ===== */
-.projects-section {
-  padding: 4rem 2rem;
-  text-align: center;
-  background: var(--dark-bg);
-  position: relative;
-  z-index: 10;
-}
-
-.section-title {
-  font-size: 3rem;
-  margin-bottom: 3rem;
-  color: var(--accent-color);
-  position: relative;
-  display: inline-block;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: var(--accent-color);
-}
-
-.project-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.project-panel {
-  background: rgba(30, 30, 30, 0.8);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-left: 3px solid var(--accent-color);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
-}
-
-.project-panel h3 {
-  color: var(--accent-color);
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-.project-panel p {
-  text-align: left;
-  line-height: 1.6;
-}
-
 .fade-in.active {
   opacity: 1;
   transform: translateY(0);
@@ -433,3 +375,4 @@ blockquote p {
     height: 30px;
   }
 }
+
