@@ -324,34 +324,45 @@ document.querySelectorAll(".top-nav a").forEach((anchor) => {
 
 import emailjs from "@emailjs/browser";
 
-// Initialize EmailJS
-emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+const emailJsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const emailJsServiceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const emailJsTemplateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+if (emailJsPublicKey) {
+  emailjs.init(emailJsPublicKey);
+} else {
+  console.error(
+    "EmailJS Public Key is not defined. Make sure VITE_EMAILJS_PUBLIC_KEY is set in your environment variables."
+  );
+}
 
 document.querySelector(".contact-form form").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  emailjs.sendForm(
-    import.meta.env.VITE_EMAILJS_SERVICE_ID,
-    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    e.target
-  ).then(
+  if (!emailJsServiceID || !emailJsTemplateID) {
+    alert("EmailJS configuration is missing. Please contact support.");
+    console.error("EmailJS Service ID or Template ID is not defined.");
+    return;
+  }
+
+  emailjs.sendForm(emailJsServiceID, emailJsTemplateID, e.target).then(
     () => {
       alert("Message sent successfully!");
       e.target.reset();
     },
     (error) => {
-      alert("Failed to send message: " + error.text);
+      alert("Failed to send message: " + (error.text || JSON.stringify(error)));
+      console.error("EmailJS sendForm error:", error);
     }
   );
 });
 
-
-document.getElementById('viewResume').addEventListener('click', function() {
+document.getElementById("viewResume").addEventListener("click", function () {
   // Replace with your actual resume file path
-  window.open('/resume.pdf', '_blank');
+  window.open("/resume.pdf", "_blank");
 });
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
