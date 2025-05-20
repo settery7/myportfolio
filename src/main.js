@@ -223,6 +223,10 @@ function moveCamera() {
     revertRotation = true;
   }
 
+  uranus.rotation.x -= 0.05;
+  uranus.rotation.y -= 0.075;
+  uranus.rotation.z -= 0.05;
+
   camera.position.z = 50 + scrollTop * -0.001;
   camera.position.x = -10 + scrollTop * -0.0001;
   camera.rotation.y = scrollTop * -0.0002;
