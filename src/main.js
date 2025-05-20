@@ -77,6 +77,87 @@ function addStar() {
 
 Array(1000).fill().forEach(addStar);
 
+// 1. Texture Loading
+const textureLoader = new THREE.TextureLoader();
+
+// Load all PBR textures
+const asteroidTextures = {
+    map: textureLoader.load('models/asteroid_basecolor.jpg'),
+    aoMap: textureLoader.load('models/asteroid_ambientocclusion.jpg'),
+    normalMap: textureLoader.load('models/asteroid_normal.jpg'),
+    roughnessMap: textureLoader.load('models/asteroid_roughness.jpg'),
+    displacementMap: textureLoader.load('models/asteroid_displacement.jpg'),
+};
+
+// 2. Create Randomized Asteroid Geometry
+function createAsteroid() {
+    // Start with a low-poly sphere
+    const geometry = new THREE.IcosahedronGeometry(1, 3);
+    
+    // Randomize the shape
+    const positionAttribute = geometry.attributes.position;
+    for (let i = 0; i < positionAttribute.count; i++) {
+        const x = positionAttribute.getX(i);
+        const y = positionAttribute.getY(i);
+        const z = positionAttribute.getZ(i);
+        
+        // Create organic-looking displacement
+        const noise = Math.random() * 0.5 + 0.5; // 0.5-1.0 range
+        positionAttribute.setXYZ(
+            i,
+            x * noise * (1 + Math.sin(y * 5) * 0.2),
+            y * noise * (1 + Math.cos(z * 5) * 0.2),
+            z * noise * (1 + Math.sin(x * 5) * 0.2)
+        );
+    }
+    
+    // Update normals for proper lighting
+    geometry.computeVertexNormals();
+    
+    // 3. Create PBR Material
+    const material = new THREE.MeshStandardMaterial({
+        ...asteroidTextures,
+        metalness: 0.1,
+        displacementScale: 0.1,
+        side: THREE.DoubleSide
+    });
+    
+    // 4. Create Mesh
+    const asteroid = new THREE.Mesh(geometry, material);
+    
+    // Random scale (0.5 to 2.0 units)
+    const scale = Math.random() * 1.5 + 0.5;
+    asteroid.scale.set(scale, scale, scale);
+    
+    // Random rotation
+    asteroid.rotation.set(
+        Math.random() * Math.PI,
+        Math.random() * Math.PI,
+        Math.random() * Math.PI
+    );
+    
+    return asteroid;
+}
+
+// 5. Create Asteroid Field
+const asteroids = [];
+const asteroidCount = 50;
+
+for (let i = 0; i < asteroidCount; i++) {
+    const asteroid = createAsteroid();
+    
+    // Position randomly in space
+    asteroid.position.set(
+        THREE.MathUtils.randFloatSpread(200),
+        THREE.MathUtils.randFloatSpread(200),
+        THREE.MathUtils.randFloatSpread(200)
+    );
+    
+    scene.add(asteroid);
+    asteroids.push(asteroid);
+}
+
+
 // Background
 
 const spaceTexture = new THREE.TextureLoader().load("space1.jpg", (texture) => {
@@ -239,11 +320,22 @@ moveCamera();
 
 let modelMovingLeft = true;
 const modelMoveSpeed = 0.5; // Adjust speed as needed
-const leftBound = -100;
+const leftBound = -200;
 const rightBound = -20;
 
 function animate() {
   requestAnimationFrame(animate);
+
+  asteroids.forEach(asteroid => {
+    // Slow rotation for realism
+    asteroid.rotation.x += 0.001;
+    asteroid.rotation.y += 0.002;
+    
+    // Optional: Orbit movement
+    asteroid.position.x += Math.sin(Date.now() * 0.001) * 0.01;
+    asteroid.position.z += Math.cos(Date.now() * 0.001) * 0.01;
+});
+
   if (model) {
     // Calculate target rotation (in radians)
     const targetRotationY = modelMovingLeft

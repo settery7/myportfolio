@@ -52,6 +52,13 @@ header {
   font-size: 2.5rem;
   padding: 2rem;
   margin-bottom: var(--spacing);
+  overflow: hidden; /* Prevent overflow */
+}
+
+header img {
+  max-width: 120%; /* Make SVG responsive */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below image */
 }
 
 /* ===== Section Styles ===== */
