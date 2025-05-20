@@ -20,13 +20,15 @@
           <li><a href="#about">About Me</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
 
       <header id="home">
         <h1>Clayne Cezclark Nable</h1>
-        <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=32&duration=3000&pause=1000&color=FF6347&vCenter=true&width=500&height=100&lines=I'm+a+Project+Manager;I'm+a+Game+Designer;I'm+a+Game+Developer;I'm+a+Backend+Programmer" alt="Typing SVG" /></a>
-        
+
+        <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=32&duration=3000&pause=1000&color=FF6347&vCenter=true&width=700&lines=I'm+a+Computer+Engineer+Undergrad;I'm+an+aspiring+Game+Designer;I'm++a+Backend+Programmer;I'm+a+Unity+Engine+Enjoyer;I+am+Exploring+Godot+Engine;I'm+always+Leveling+Up" alt="Typing SVG" /></a> 
+     
       </header>
 
       <section id="about">
@@ -44,8 +46,8 @@
         </p>
       </section>
 
-      <section id="skills">
-        <h2>Skills</h2>
+      <section id="skills" class="skills-section">
+        <h2 class="heading"><span>Skills</span> </h2> 
         
         <div class="skills-container">
           <div class="skills-category">
@@ -277,11 +279,63 @@
           </div>
         </div>
     </section>
+
+    <!-- Contact Section -->
+<section id="contact">
+  <h2>Let's Connect</h2>
+  
+  <p class="contact-intro">
+    Have a project in mind, a question, or just want to say hi? Feel free to reach out. 
+    I'm always open to discussing new ideas and opportunities.
+  </p>
+
+  <div class="contact-container">
+    <!-- Contact Information -->
+    <div class="contact-info">
+      <h3>Contact Information</h3>
+      <ul>
+        <li><strong>Email</strong><br>n.cezclayne@gmail.com</li>
+        <li><strong>Phone</strong><br>+63 922 461 8682</li>
+        <li><strong>Location</strong><br>Naga, Cebu, Philippines<br>(Open to remote opportunities)</li>
+      </ul>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+      <h3>Send Me a Message</h3>
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Subject (Optional)</label>
+          <input type="text" id="subject" name="subject">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn-send">Send Message</button>
+        <button type="button" class="btn-send" id="viewResume">View Resume</button>
+      </form>
+    </div>
+  </div>
+</section>
     
 
-      <blockquote>
+      <!-- <blockquote>
         <p>tysm for watching</p>
-      </blockquote>
+        
+      </blockquote> -->
     </main>
 
     <script type="module" src="/src/main.js"></script>
